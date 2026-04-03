@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFind - Indian Product Comparison</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --secondary: #047857;
+            --accent: #6ee7b7;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --mist: #ecfdf5;
+            --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            color: var(--dark);
+            background:
+                radial-gradient(circle at top left, rgba(110, 231, 183, 0.25), transparent 24rem),
+                radial-gradient(circle at top right, rgba(16, 185, 129, 0.2), transparent 22rem),
+                linear-gradient(180deg, #f0fdf4 0%, #f8fafc 34%, #eef2ff 100%);
+        }
+
+        .hero-shell {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(16, 185, 129, 0.97), rgba(5, 150, 105, 0.9)),
+                radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.18), transparent 18rem);
+        }
+
+        .hero-shell::after {
+            content: "";
+            position: absolute;
+            inset: auto -8rem -8rem auto;
+            width: 20rem;
+            height: 20rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            filter: blur(12px);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .card-hover {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+        }
+
+        .eco-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.45s ease both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chip {
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .section-title {
+            letter-spacing: -0.03em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="hero-shell text-white shadow-lg">
+        <div class="container mx-auto flex items-center justify-between px-4 py-4">
+            <div class="flex items-center gap-3">
+                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15">
+                    <i class="fas fa-leaf text-xl"></i>
+                </div>
+                <div>
+                    <div class="text-xl font-bold tracking-tight">EcoFind</div>
+                    <div class="text-xs text-white/75">Indian eco-commerce comparison</div>
+                </div>
+            </div>
+            <div class="hidden items-center gap-6 md:flex">
+                <a href="#results" class="transition hover:text-emerald-100">Home</a>
+                <a href="#filters" class="transition hover:text-emerald-100">Categories</a>
+                <a href="#tips" class="transition hover:text-emerald-100">Eco Tips</a>
+                <button class="rounded-xl bg-white px-4 py-2 font-medium text-emerald-700 transition hover:bg-emerald-50">
+                    <i class="fas fa-user mr-2"></i>Sign In
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-shell px-4 py-16 text-white md:py-20">
+        <div class="container mx-auto grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+                <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm">
+                    <i class="fas fa-seedling"></i>
+                    <span>Smart shopping for lower-impact living</span>
+                </div>
+                <h1 class="section-title mb-4 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">
+                    Find Eco-Friendly Products and Compare Prices Across India
+                </h1>
+                <p class="mb-8 max-w-2xl text-lg text-emerald-50 md:text-xl">
+                    Discover sustainable alternatives from major Indian marketplaces, compare offers side by side, and buy with clearer environmental context.
+                </p>
+
+                <div class="glass-panel max-w-3xl rounded-3xl p-3">
+                    <div class="flex flex-col gap-3 md:flex-row">
+                        <input
+                            id="search-input"
+                            type="text"
+                            value="Bamboo Toothbrush"
+                            placeholder="Search for products like bamboo toothbrush or organic cotton shirt"
+                            class="w-full rounded-2xl border border-transparent px-5 py-4 text-gray-800 outline-none ring-0"
+                        >
+                        <button
+                            id="search-button"
+                            class="rounded-2xl bg-emerald-600 px-6 py-4 font-semibold text-white transition hover:bg-emerald-700"
+                        >
+                            <i class="fas fa-search mr-2"></i>Search
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-5 flex flex-wrap gap-2 text-sm">
+                    <span class="chip rounded-full px-3 py-1.5">Amazon</span>
+                    <span class="chip rounded-full px-3 py-1.5">Flipkart</span>
+                    <span class="chip rounded-full px-3 py-1.5">Myntra</span>
+                    <span class="chip rounded-full px-3 py-1.5">Ajio</span>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-6 text-gray-800">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium uppercase tracking-[0.22em] text-emerald-700">Quick Snapshot</p>
+                        <h2 class="mt-1 text-2xl font-bold">Best Value Today</h2>
+                    </div>
+                    <span class="rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">Eco Match</span>
+                </div>
+                <div class="rounded-3xl bg-white p-5 shadow-sm">
+                    <div class="mb-3 flex items-center justify-between">
+                        <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase text-emerald-700">Trending search</span>
+                        <span class="text-sm text-gray-500">Updated just now</span>
+                    </div>
+                    <h3 class="text-xl font-semibold">Organic Bamboo Toothbrush</h3>
+                    <p class="mt-2 text-sm text-gray-600">Strong eco score, biodegradable handle, and one of the lowest current prices across supported platforms.</p>
+                    <div class="mt-5 grid grid-cols-3 gap-3 text-center">
+                        <div class="rounded-2xl bg-emerald-50 p-3">
+                            <div class="text-xs uppercase text-gray-500">Lowest Price</div>
+                            <div class="mt-1 text-lg font-bold text-emerald-700">&#8377;299</div>
+                        </div>
+                        <div class="rounded-2xl bg-slate-50 p-3">
+                            <div class="text-xs uppercase text-gray-500">Eco Score</div>
+                            <div class="mt-1 text-lg font-bold text-slate-800">85%</div>
+                        </div>
+                        <div class="rounded-2xl bg-amber-50 p-3">
+                            <div class="text-xs uppercase text-gray-500">Discount</div>
+                            <div class="mt-1 text-lg font-bold text-amber-700">25%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-12">
+        <section id="filters" class="glass-panel mb-8 rounded-[2rem] p-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl font-semibold">Filters</h2>
+                    <p class="text-sm text-gray-500">Narrow results by category, platform, ranking, and eco preference.</p>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <select id="category-filter" class="rounded-xl border border-emerald-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="All Categories">All Categories</option>
+                    </select>
+                    <select id="platform-filter" class="rounded-xl border border-emerald-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="All Platforms">All Platforms</option>
+                        <option value="Amazon">Amazon</option>
+                        <option value="Flipkart">Flipkart</option>
+                        <option value="Myntra">Myntra</option>
+                        <option value="Ajio">Ajio</option>
+                    </select>
+                    <select id="sort-filter" class="rounded-xl border border-emerald-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="eco-desc">Eco Score: High to Low</option>
+                        <option value="discount-desc">Discount %</option>
+                    </select>
+                    <label class="flex items-center gap-2 rounded-xl border border-emerald-100 bg-white px-4 py-2.5">
+                        <input type="checkbox" id="eco-only" class="h-5 w-5 text-emerald-600">
+                        <span>Eco-Friendly Only</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="mb-12">
+            <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                    <h2 id="results-heading" class="section-title text-3xl font-bold">Search Results for "Bamboo Toothbrush"</h2>
+                    <p id="results-summary" class="mt-2 text-gray-500">Showing 3 curated results across major Indian shopping platforms.</p>
+                </div>
+            </div>
+
+            <div id="product-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+        </section>
+
+        <section class="glass-panel mb-12 rounded-[2rem] p-6">
+            <h2 class="section-title mb-6 text-2xl font-bold">Price Comparison</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[760px]">
+                    <thead>
+                        <tr class="border-b border-emerald-100 text-left">
+                            <th class="py-3">Platform</th>
+                            <th class="py-3">Product</th>
+                            <th class="py-3 text-right">Price</th>
+                            <th class="py-3 text-right">Discount</th>
+                            <th class="py-3 text-center">Eco Score</th>
+                            <th class="py-3 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparison-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="tips" class="glass-panel rounded-[2rem] p-6">
+            <div class="mb-6 flex items-center justify-between gap-4">
+                <div>
+                    <h2 class="section-title text-2xl font-bold">Why Choose Eco-Friendly Products?</h2>
+                    <p class="mt-2 text-gray-500">Small switches compound into lower waste, safer materials, and more sustainable supply chains.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <div class="rounded-3xl bg-white p-5 text-center shadow-sm">
+                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                        <i class="fas fa-recycle text-2xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-semibold">Biodegradable</h3>
+                    <p class="mt-2 text-sm text-gray-600">Reduce landfill pressure with products that naturally break down after use.</p>
+                </div>
+                <div class="rounded-3xl bg-white p-5 text-center shadow-sm">
+                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                        <i class="fas fa-tree text-2xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-semibold">Sustainable</h3>
+                    <p class="mt-2 text-sm text-gray-600">Support renewable materials and more responsible manufacturing choices.</p>
+                </div>
+                <div class="rounded-3xl bg-white p-5 text-center shadow-sm">
+                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                        <i class="fas fa-hand-holding-heart text-2xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-semibold">Non-Toxic</h3>
+                    <p class="mt-2 text-sm text-gray-600">Choose materials that are often gentler on both households and ecosystems.</p>
+                </div>
+                <div class="rounded-3xl bg-white p-5 text-center shadow-sm">
+                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                        <i class="fas fa-truck text-2xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-semibold">Lower Footprint</h3>
+                    <p class="mt-2 text-sm text-gray-600">Prioritize products that better align with lower-waste transport and sourcing.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-16 bg-slate-900 py-12 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+                <div>
+                    <div class="mb-4 flex items-center gap-2">
+                        <i class="fas fa-leaf text-2xl text-emerald-400"></i>
+                        <span class="text-xl font-bold">EcoFind</span>
+                    </div>
+                    <p class="text-sm text-slate-400">Find eco-friendly products and compare offers across Indian e-commerce platforms with cleaner shopping context.</p>
+                </div>
+                <div>
+                    <h3 class="mb-4 text-lg font-semibold">Quick Links</h3>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#results" class="transition hover:text-white">Home</a></li>
+                        <li><a href="#filters" class="transition hover:text-white">Categories</a></li>
+                        <li><a href="#tips" class="transition hover:text-white">Eco Tips</a></li>
+                        <li><a href="#" class="transition hover:text-white">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="mb-4 text-lg font-semibold">Platforms</h3>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="transition hover:text-white">Amazon</a></li>
+                        <li><a href="#" class="transition hover:text-white">Flipkart</a></li>
+                        <li><a href="#" class="transition hover:text-white">Myntra</a></li>
+                        <li><a href="#" class="transition hover:text-white">Ajio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="mb-4 text-lg font-semibold">Subscribe</h3>
+                    <p class="mb-4 text-sm text-slate-400">Get updates on new eco-friendly product categories and deals.</p>
+                    <div class="flex overflow-hidden rounded-2xl bg-slate-800">
+                        <input type="email" placeholder="Your email" class="w-full bg-transparent px-4 py-3 text-white outline-none">
+                        <button class="bg-emerald-600 px-4 py-3 transition hover:bg-emerald-700">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
+                <p>&copy; 2026 EcoFind. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE_URL = (() => {
+            const { protocol, hostname, port, origin } = window.location;
+
+            if (protocol === "file:") {
+                return "http://127.0.0.1:5001/api";
+            }
+
+            if (hostname === "127.0.0.1" || hostname === "localhost") {
+                return port === "5001" ? `${origin}/api` : "http://127.0.0.1:5001/api";
+            }
+
+            return `${origin}/api`;
+        })();
+        const PLACEHOLDER_IMAGE = "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=900&q=80";
+
+        const platformLogos = {
+            Amazon: "https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png",
+            Flipkart: "https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png",
+            Myntra: "https://logos-world.net/wp-content/uploads/2022/12/Myntra-Logo.png",
+            Ajio: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ajio_logo.svg/512px-Ajio_logo.svg.png"
+        };
+
+        const searchInput = document.getElementById("search-input");
+        const searchButton = document.getElementById("search-button");
+        const categoryFilter = document.getElementById("category-filter");
+        const platformFilter = document.getElementById("platform-filter");
+        const sortFilter = document.getElementById("sort-filter");
+        const ecoOnlyToggle = document.getElementById("eco-only");
+        const productGrid = document.getElementById("product-grid");
+        const comparisonTableBody = document.getElementById("comparison-table-body");
+        const resultsHeading = document.getElementById("results-heading");
+        const resultsSummary = document.getElementById("results-summary");
+
+        function formatCurrency(price) {
+            return new Intl.NumberFormat("en-IN", {
+                style: "currency",
+                currency: "INR",
+                maximumFractionDigits: 0
+            }).format(price);
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function safeUrl(url, fallback = "#") {
+            if (typeof url !== "string" || !url.trim()) {
+                return fallback;
+            }
+
+            try {
+                const parsed = new URL(url);
+                return ["http:", "https:"].includes(parsed.protocol) ? parsed.href : fallback;
+            } catch {
+                return fallback;
+            }
+        }
+
+        async function searchProductsAPI(query, filters = {}) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/search`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ query, filters })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    return Array.isArray(data.products) ? data.products : [];
+                }
+
+                console.error("Search failed:", data.error);
+                return [];
+            } catch (error) {
+                console.error("Search error:", error);
+                return [];
+            }
+        }
+
+        async function loadCategories() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/categories`);
+                const data = await response.json();
+
+                if (!data.success || !Array.isArray(data.categories)) {
+                    return;
+                }
+
+                categoryFilter.innerHTML = `
+                    <option value="All Categories">All Categories</option>
+                    ${data.categories.map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join("")}
+                `;
+            } catch (error) {
+                console.error("Category load error:", error);
+            }
+        }
+
+        function getPrimaryPrice(product) {
+            const platforms = Object.keys(product.prices || {});
+            if (!platforms.length) {
+                return null;
+            }
+
+            const lowestPlatform = platforms.reduce((lowest, platform) => {
+                return product.prices[platform].price < product.prices[lowest].price ? platform : lowest;
+            });
+
+            return { ...product.prices[lowestPlatform], platform: lowestPlatform };
+        }
+
+        function applyFilters(productList) {
+            const category = categoryFilter.value;
+            const platform = platformFilter.value;
+            const ecoOnly = ecoOnlyToggle.checked;
+
+            return productList.filter((product) => {
+                const price = getPrimaryPrice(product);
+                if (!price) {
+                    return false;
+                }
+
+                const categoryMatch = category === "All Categories" || product.category === category;
+                const platformMatch = platform === "All Platforms" || price.platform === platform;
+                const ecoMatch = !ecoOnly || product.eco_score >= 85;
+                return categoryMatch && platformMatch && ecoMatch;
+            });
+        }
+
+        function sortProducts(productList) {
+            return [...productList].sort((a, b) => {
+                const left = getPrimaryPrice(a);
+                const right = getPrimaryPrice(b);
+
+                switch (sortFilter.value) {
+                    case "price-desc":
+                        return (right?.price || 0) - (left?.price || 0);
+                    case "eco-desc":
+                        return b.eco_score - a.eco_score;
+                    case "discount-desc":
+                        return (right?.discount || 0) - (left?.discount || 0);
+                    case "price-asc":
+                    default:
+                        return (left?.price || 0) - (right?.price || 0);
+                }
+            });
+        }
+
+        function renderProducts(productList, query) {
+            productGrid.innerHTML = "";
+            comparisonTableBody.innerHTML = "";
+
+            resultsHeading.textContent = `Search Results for "${query || "All Products"}"`;
+            resultsSummary.textContent = productList.length
+                ? `Showing ${productList.length} curated result${productList.length > 1 ? "s" : ""} across major Indian shopping platforms.`
+                : "No results matched your current search and filters.";
+
+            if (!productList.length) {
+                productGrid.innerHTML = `
+                    <div class="glass-panel col-span-full rounded-[2rem] p-10 text-center">
+                        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                            <i class="fas fa-search text-2xl text-emerald-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">No matching products found</h3>
+                        <p class="mt-2 text-gray-500">Try a broader search term or reset the active filters.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            productList.forEach((product, index) => {
+                const offer = getPrimaryPrice(product);
+                if (!offer) {
+                    return;
+                }
+
+                const productUrl = safeUrl(offer.product_url);
+                const imageUrl = safeUrl(product.image_url, PLACEHOLDER_IMAGE);
+                const productName = escapeHtml(product.name);
+                const productDescription = escapeHtml(product.description || "No description available yet.");
+                const productCategory = escapeHtml(product.category || "Sustainable pick");
+                const platformName = escapeHtml(offer.platform);
+                const availability = escapeHtml(offer.availability || "In Stock");
+                const originalPrice = offer.discount > 0
+                    ? formatCurrency(Math.round(offer.price / (1 - offer.discount / 100)))
+                    : "";
+
+                const card = document.createElement("article");
+                card.className = "card-hover fade-in overflow-hidden rounded-[2rem] bg-white shadow-sm";
+                card.style.animationDelay = `${index * 90}ms`;
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${imageUrl}" alt="${productName}" class="h-52 w-full object-cover">
+                        <div class="eco-badge rounded-full bg-emerald-500 px-3 py-1 text-sm font-bold text-white">
+                            Eco Score: ${product.eco_score}%
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold">${productName}</h3>
+                        <p class="mt-2 text-sm text-gray-600">${productDescription}</p>
+                        <div class="mt-5">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="text-2xl font-bold text-emerald-600">${formatCurrency(offer.price)}</span>
+                                ${originalPrice ? `<span class="text-gray-400 line-through">${originalPrice}</span>` : ""}
+                                <span class="font-medium text-emerald-600">${offer.discount}% off</span>
+                            </div>
+                            <div class="mt-1 text-sm text-gray-500">${productCategory}</div>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <img src="${platformLogos[offer.platform] || ""}" alt="${platformName}" class="h-5 object-contain">
+                                <span class="text-sm">${platformName}</span>
+                            </div>
+                            <span class="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-medium text-emerald-800">${availability}</span>
+                        </div>
+                        <a
+                            href="${productUrl}"
+                            target="_blank"
+                            rel="noreferrer"
+                            class="mt-5 block w-full rounded-2xl bg-emerald-600 py-3 text-center font-medium text-white transition hover:bg-emerald-700"
+                        >
+                            <i class="fas fa-external-link-alt mr-2"></i>Buy Now
+                        </a>
+                    </div>
+                `;
+                productGrid.appendChild(card);
+
+                const row = document.createElement("tr");
+                row.className = `${index === 0 ? "bg-emerald-50" : ""} border-b border-emerald-100 hover:bg-slate-50`;
+                row.innerHTML = `
+                    <td class="py-4">
+                        <div class="flex items-center gap-2">
+                            <img src="${platformLogos[offer.platform] || ""}" alt="${platformName}" class="h-5 object-contain">
+                            <span>${platformName}</span>
+                        </div>
+                    </td>
+                    <td class="py-4">${productName}</td>
+                    <td class="py-4 text-right font-semibold text-emerald-600">${formatCurrency(offer.price)}</td>
+                    <td class="py-4 text-right">${offer.discount}% off</td>
+                    <td class="py-4 text-center">
+                        <span class="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-800">${product.eco_score}%</span>
+                    </td>
+                    <td class="py-4 text-center">
+                        <a
+                            href="${productUrl}"
+                            target="_blank"
+                            rel="noreferrer"
+                            class="inline-block rounded-xl bg-emerald-600 px-4 py-2 text-sm text-white transition hover:bg-emerald-700"
+                        >
+                            Buy Now
+                        </a>
+                    </td>
+                `;
+                comparisonTableBody.appendChild(row);
+            });
+        }
+
+        async function runSearch() {
+            const query = searchInput.value.trim();
+            const filters = {};
+
+            if (categoryFilter.value !== "All Categories") {
+                filters.category = categoryFilter.value;
+            }
+
+            if (platformFilter.value !== "All Platforms") {
+                filters.platform = platformFilter.value;
+            }
+
+            if (ecoOnlyToggle.checked) {
+                filters.minEcoScore = 85;
+            }
+
+            try {
+                const productList = await searchProductsAPI(query, filters);
+                const filteredAndSorted = sortProducts(applyFilters(productList));
+                renderProducts(filteredAndSorted, query);
+            } catch (error) {
+                console.error("Search failed:", error);
+                renderProducts([], query);
+            }
+        }
+
+        searchButton.addEventListener("click", runSearch);
+        searchInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                runSearch();
+            }
+        });
+
+        categoryFilter.addEventListener("change", runSearch);
+        platformFilter.addEventListener("change", runSearch);
+        sortFilter.addEventListener("change", runSearch);
+        ecoOnlyToggle.addEventListener("change", runSearch);
+
+        loadCategories().finally(runSearch);
+    </script>
+</body>
+</html>
