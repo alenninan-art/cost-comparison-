@@ -6,44 +6,37 @@ A platform to find and compare eco-friendly products across Indian e-commerce pl
 
 ### Backend Setup
 
-1. **Navigate to backend directory:**
+1. Navigate to the backend directory:
    ```bash
    cd backend
    ```
 
-2. **Install dependencies:**
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. **Set up Supabase:**
+3. Set up Supabase:
    - Create a [Supabase](https://supabase.com) account
    - Create a new project
    - Copy `backend/.env.example` to `backend/.env`
    - Add your project URL and anonymous key from Supabase project settings
 
-4. **Set up database tables and policies:**
+4. Set up database tables and policies:
    - Open the Supabase SQL editor
    - Run `backend/supabase/schema.sql`
    - Optionally run `backend/supabase/seed.sql` to load sample products
 
-5. **Start the backend server:**
+5. Start the backend server:
    ```bash
    npm start
    ```
 
 ### Frontend Setup
 
-1. **Open the frontend:**
-   - Open `index.html` in your web browser
-   - Or serve it with a local server:
-     ```bash
-     npx serve .
-     ```
-
-2. **Test the application:**
-   - The frontend will connect to the backend API at `http://localhost:5000`
-   - Make sure the backend is running
+1. Open `index.html` in your browser, or run a local static server.
+2. If you open the file directly, it will call the backend at `http://127.0.0.1:5001/api`.
+3. If you run the Node backend in a deployed environment, the frontend uses the same site origin automatically.
 
 ## Features
 
@@ -64,64 +57,12 @@ This project is set up to deploy as a single Node web service on Render.
 
 The deployed app will serve both the frontend and API from the same public URL.
 
-## Setup Instructions
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-- Supabase account
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Set up environment variables:
-   - Copy `backend/.env.example` to `backend/.env`
-   - Add your Supabase URL and anonymous key
-
-4. Set up Supabase database:
-   - Run `backend/supabase/schema.sql`
-   - Optionally run `backend/supabase/seed.sql`
-
-5. Start the backend server:
-   ```bash
-   npm start
-   ```
-
-### Frontend Setup
-
-1. Open `index.html` in a web browser
-2. Or serve it with a local server:
-   ```bash
-   npx serve .
-   ```
-
 ## API Endpoints
 
+- `GET /api/health` - Verify the backend can reach Supabase
 - `POST /api/search` - Search products
 - `GET /api/products/:id` - Get product details
 - `GET /api/categories` - Get product categories
-- `GET /api/health` - Verify the backend can reach Supabase
 - `POST /api/wishlist` - Add to wishlist
 - `GET /api/wishlist/:user_id` - Get user wishlist
 - `DELETE /api/wishlist` - Remove from wishlist
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
