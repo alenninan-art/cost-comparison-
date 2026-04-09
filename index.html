@@ -20,6 +20,33 @@
             --shadow: 0 20px 50px rgba(30, 27, 75, 0.08);
         }
 
+        @keyframes pulse-live {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #fef2f2;
+            color: #b91c1c;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid #fee2e2;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: pulse-live 2s infinite;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -387,6 +414,20 @@
             }).format(price);
         }
 
+        function formatTimeAgo(dateString) {
+            if (!dateString) return "N/A";
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            
+            if (diffMins < 1) return "Just now";
+            if (diffMins < 60) return `${diffMins} min ago`;
+            const diffHours = Math.floor(diffMins / 60);
+            if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            return date.toLocaleDateString();
+        }
+
         function escapeHtml(value) {
             return String(value ?? "")
                 .replace(/&/g, "&amp;")
@@ -480,7 +521,7 @@
 
                 const categoryMatch = category === "All Categories" || product.category === category;
                 const platformMatch = platform === "All Platforms" || price.platform === platform;
-                const ecoMatch = !ecoOnly || (primaryOffer?.discount >= 40);
+                const ecoMatch = !ecoOnly || (price?.discount >= 40);
                 return categoryMatch && platformMatch && ecoMatch;
             });
         }
@@ -581,6 +622,13 @@
                                     <div class="flex items-center gap-2">
                                         <span class="text-2xl font-black text-indigo-600">${formatCurrency(primaryOffer.price)}</span>
                                         ${primaryOffer.discount > 0 ? `<span class="text-xs font-bold text-indigo-700">(-${primaryOffer.discount}%)</span>` : ""}
+                                    </div>
+                                    <div class="mt-1 flex items-center gap-2">
+                                        <div class="live-badge">
+                                            <div class="live-dot"></div>
+                                            <span>LIVE PRICE</span>
+                                        </div>
+                                        <span class="text-[10px] text-gray-400">Verified ${formatTimeAgo(primaryOffer.last_updated)}</span>
                                     </div>
                                     <div class="mt-0.5 flex items-center gap-2">
                                         <img src="${platformLogos[primaryOffer.platform] || ""}" alt="${primaryOffer.platform}" class="h-3.5 object-contain">

@@ -278,6 +278,64 @@ app.get('/api/categories', async (_req, res) => {
   }
 });
 
+app.post('/api/sync-live', async (req, res) => {
+  try {
+    const { products } = req.body;
+    if (!Array.isArray(products)) {
+      return res.status(400).json({ success: false, error: 'products array is required' });
+    }
+
+    for (const p of products) {
+      // 1. Upsert product
+      const { data: productData, error: productError } = await supabase
+        .from('products')
+        .upsert({
+          name: p.name,
+          brand: p.brand,
+          category: p.category,
+          description: p.description,
+          image_url: p.image_url,
+          eco_score: p.eco_score || 0,
+          materials: p.materials || ''
+        }, { onConflict: 'name' })
+        .select()
+        .single();
+
+      if (productError) {
+        console.error(`Sync error for ${p.name}:`, productError.message);
+        continue;
+      }
+
+      const productId = productData.id;
+
+      // 2. Upsert prices
+      if (p.prices && typeof p.prices === 'object') {
+        const priceEntries = Object.entries(p.prices).map(([platform, offer]) => ({
+          product_id: productId,
+          platform: platform,
+          price: offer.price,
+          url: offer.url || offer.product_url || '',
+          discount: offer.discount || 0,
+          last_updated: new Date().toISOString()
+        }));
+
+        const { error: priceError } = await supabase
+          .from('prices')
+          .upsert(priceEntries, { onConflict: 'product_id,platform' });
+
+        if (priceError) {
+          console.error(`Price sync error for ${p.name}:`, priceError.message);
+        }
+      }
+    }
+
+    res.json({ success: true, message: 'Live data synced successfully' });
+  } catch (error) {
+    console.error('Live sync error:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 app.get('/', (_req, res) => {
   res.sendFile(path.join(staticRoot, 'index.html'));
 });
