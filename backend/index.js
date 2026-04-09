@@ -27,17 +27,38 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(staticRoot));
 
+// Request logging middleware
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
+// Helper for Supabase queries with timeout
+const QUERY_TIMEOUT_MS = 8000;
+async function withTimeout(promise, timeoutMs = QUERY_TIMEOUT_MS) {
+  let timeoutId;
+  const timeoutPromise = new Promise((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error('Query timed out after ' + timeoutMs + 'ms')), timeoutMs);
+  });
+  return Promise.race([promise, timeoutPromise]).finally(() => clearTimeout(timeoutId));
+}
+
 app.get('/api/health', async (_req, res) => {
+  console.log('Health check started');
   try {
-    const { error } = await supabase.from('products').select('id', { head: true, count: 'exact' });
+    console.log('Querying Supabase for health check...');
+    const { error } = await withTimeout(supabase.from('products').select('id', { head: true, count: 'exact' }));
+    console.log('Health check query finished');
 
     if (error) {
+      console.error('Health check error result:', error);
       throw error;
     }
 
+    console.log('Health check success');
     res.json({ success: true, message: 'API and Supabase connection are healthy' });
   } catch (error) {
-    console.error('Health check error:', error);
+    console.error('Health check error caught:', error.message);
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -75,7 +96,7 @@ app.post('/api/search', async (req, res) => {
       }
     }
 
-    const { data, error } = await supabaseQuery;
+    const { data, error } = await withTimeout(supabaseQuery);
 
     if (error) {
       throw error;
@@ -303,8 +324,8 @@ function processProductData(rows) {
       const normalizedEntry = {
         ...entry,
         price: numericPrice,
-        discount: toNumber(entry.discount) ?? 0,
-        product_url: entry.product_url || '',
+        discount: toNumber(entry.discount || entry.discount_percent) ?? 0,
+        product_url: entry.url || entry.product_url || '',
         availability: entry.availability || 'In Stock'
       };
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoFind - Indian Product Comparison</title>
+    <title>PriceDrop India - Lowest Price Comparison</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,13 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #10b981;
-            --secondary: #047857;
-            --accent: #6ee7b7;
-            --dark: #1f2937;
-            --light: #f9fafb;
-            --mist: #ecfdf5;
-            --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+            --primary: #4f46e5;
+            --secondary: #4338ca;
+            --accent: #818cf8;
+            --dark: #1e1b4b;
+            --light: #f8fafc;
+            --mist: #eef2ff;
+            --shadow: 0 20px 50px rgba(30, 27, 75, 0.08);
         }
 
         * {
@@ -31,16 +31,16 @@
             min-height: 100vh;
             color: var(--dark);
             background:
-                radial-gradient(circle at top left, rgba(110, 231, 183, 0.25), transparent 24rem),
-                radial-gradient(circle at top right, rgba(16, 185, 129, 0.2), transparent 22rem),
-                linear-gradient(180deg, #f0fdf4 0%, #f8fafc 34%, #eef2ff 100%);
+                radial-gradient(circle at top left, rgba(129, 140, 248, 0.25), transparent 24rem),
+                radial-gradient(circle at top right, rgba(79, 70, 229, 0.2), transparent 22rem),
+                linear-gradient(180deg, #f8fafc 0%, #f1f5f9 34%, #eef2ff 100%);
         }
 
         .hero-shell {
             position: relative;
             overflow: hidden;
             background:
-                linear-gradient(135deg, rgba(16, 185, 129, 0.97), rgba(5, 150, 105, 0.9)),
+                linear-gradient(135deg, rgba(79, 70, 229, 0.97), rgba(67, 56, 202, 0.9)),
                 radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.18), transparent 18rem);
         }
 
@@ -108,18 +108,18 @@
         <div class="container mx-auto flex items-center justify-between px-4 py-4">
             <div class="flex items-center gap-3">
                 <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15">
-                    <i class="fas fa-leaf text-xl"></i>
+                    <i class="fas fa-tag text-xl"></i>
                 </div>
                 <div>
-                    <div class="text-xl font-bold tracking-tight">EcoFind</div>
-                    <div class="text-xs text-white/75">Indian eco-commerce comparison</div>
+                    <div class="text-xl font-bold tracking-tight">PriceDrop</div>
+                    <div class="text-xs text-white/75">Indian e-commerce price comparison</div>
                 </div>
             </div>
             <div class="hidden items-center gap-6 md:flex">
-                <a href="#results" class="transition hover:text-emerald-100">Home</a>
-                <a href="#filters" class="transition hover:text-emerald-100">Categories</a>
-                <a href="#tips" class="transition hover:text-emerald-100">Eco Tips</a>
-                <button class="rounded-xl bg-white px-4 py-2 font-medium text-emerald-700 transition hover:bg-emerald-50">
+                <a href="#results" class="transition hover:text-indigo-100">Home</a>
+                <a href="#filters" class="transition hover:text-indigo-100">Categories</a>
+                <a href="#tips" class="transition hover:text-indigo-100">Savings Tips</a>
+                <button class="rounded-xl bg-white px-4 py-2 font-medium text-indigo-700 transition hover:bg-indigo-50">
                     <i class="fas fa-user mr-2"></i>Sign In
                 </button>
             </div>
@@ -130,14 +130,14 @@
         <div class="container mx-auto grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
                 <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm">
-                    <i class="fas fa-seedling"></i>
-                    <span>Smart shopping for lower-impact living</span>
+                    <i class="fas fa-bolt"></i>
+                    <span>Never pay full price again</span>
                 </div>
                 <h1 class="section-title mb-4 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">
-                    Find Eco-Friendly Products and Compare Prices Across India
+                    Compare Prices Across India and Find the Best Deals
                 </h1>
-                <p class="mb-8 max-w-2xl text-lg text-emerald-50 md:text-xl">
-                    Discover sustainable alternatives from major Indian marketplaces, compare offers side by side, and buy with clearer environmental context.
+                <p class="mb-8 max-w-2xl text-lg text-indigo-50 md:text-xl">
+                    Search for any product and see real-time prices from major Indian marketplaces, compare side by side, and buy at the lowest possible cost.
                 </p>
 
                 <div class="glass-panel max-w-3xl rounded-3xl p-3">
@@ -145,15 +145,15 @@
                         <input
                             id="search-input"
                             type="text"
-                            value="Bamboo Toothbrush"
-                            placeholder="Search for products like bamboo toothbrush or organic cotton shirt"
+                            value="Wireless Headphones"
+                            placeholder="Search for smartphones, laptops, clothing or shoes..."
                             class="w-full rounded-2xl border border-transparent px-5 py-4 text-gray-800 outline-none ring-0"
                         >
                         <button
                             id="search-button"
-                            class="rounded-2xl bg-emerald-600 px-6 py-4 font-semibold text-white transition hover:bg-emerald-700"
+                            class="rounded-2xl bg-indigo-600 px-6 py-4 font-semibold text-white transition hover:bg-indigo-700"
                         >
-                            <i class="fas fa-search mr-2"></i>Search
+                            <i class="fas fa-search mr-2"></i>Find Deals
                         </button>
                     </div>
                 </div>
@@ -169,30 +169,30 @@
             <div class="glass-panel rounded-[2rem] p-6 text-gray-800">
                 <div class="mb-4 flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium uppercase tracking-[0.22em] text-emerald-700">Quick Snapshot</p>
-                        <h2 class="mt-1 text-2xl font-bold">Best Value Today</h2>
+                        <p class="text-sm font-medium uppercase tracking-[0.22em] text-indigo-700">Quick Snapshot</p>
+                        <h2 class="mt-1 text-2xl font-bold">Today's Mega Deal</h2>
                     </div>
-                    <span class="rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">Eco Match</span>
+                    <span class="rounded-full bg-indigo-100 px-3 py-1 text-sm font-semibold text-indigo-700">Top Save</span>
                 </div>
                 <div class="rounded-3xl bg-white p-5 shadow-sm">
                     <div class="mb-3 flex items-center justify-between">
-                        <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase text-emerald-700">Trending search</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase text-indigo-700">Trending search</span>
                         <span class="text-sm text-gray-500">Updated just now</span>
                     </div>
-                    <h3 class="text-xl font-semibold">Organic Bamboo Toothbrush</h3>
-                    <p class="mt-2 text-sm text-gray-600">Strong eco score, biodegradable handle, and one of the lowest current prices across supported platforms.</p>
+                    <h3 class="text-xl font-semibold">Premium Noise Cancelling Headphones</h3>
+                    <p class="mt-2 text-sm text-gray-600">Massive price drop detected across major platforms today. Limited time offer.</p>
                     <div class="mt-5 grid grid-cols-3 gap-3 text-center">
-                        <div class="rounded-2xl bg-emerald-50 p-3">
+                        <div class="rounded-2xl bg-indigo-50 p-3">
                             <div class="text-xs uppercase text-gray-500">Lowest Price</div>
-                            <div class="mt-1 text-lg font-bold text-emerald-700">&#8377;299</div>
+                            <div class="mt-1 text-lg font-bold text-indigo-700">&#8377;12,999</div>
                         </div>
                         <div class="rounded-2xl bg-slate-50 p-3">
-                            <div class="text-xs uppercase text-gray-500">Eco Score</div>
-                            <div class="mt-1 text-lg font-bold text-slate-800">85%</div>
+                            <div class="text-xs uppercase text-gray-500">Savings Score</div>
+                            <div class="mt-1 text-lg font-bold text-slate-800">95%</div>
                         </div>
                         <div class="rounded-2xl bg-amber-50 p-3">
                             <div class="text-xs uppercase text-gray-500">Discount</div>
-                            <div class="mt-1 text-lg font-bold text-amber-700">25%</div>
+                            <div class="mt-1 text-lg font-bold text-amber-700">45%</div>
                         </div>
                     </div>
                 </div>
@@ -205,28 +205,28 @@
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl font-semibold">Filters</h2>
-                    <p class="text-sm text-gray-500">Narrow results by category, platform, ranking, and eco preference.</p>
+                    <p class="text-sm text-gray-500">Narrow results by category, platform, and savings preference.</p>
                 </div>
                 <div class="flex flex-wrap gap-4">
-                    <select id="category-filter" class="rounded-xl border border-emerald-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <select id="category-filter" class="rounded-xl border border-indigo-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <option value="All Categories">All Categories</option>
                     </select>
-                    <select id="platform-filter" class="rounded-xl border border-emerald-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <select id="platform-filter" class="rounded-xl border border-indigo-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <option value="All Platforms">All Platforms</option>
                         <option value="Amazon">Amazon</option>
                         <option value="Flipkart">Flipkart</option>
                         <option value="Myntra">Myntra</option>
                         <option value="Ajio">Ajio</option>
                     </select>
-                    <select id="sort-filter" class="rounded-xl border border-emerald-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <select id="sort-filter" class="rounded-xl border border-indigo-100 bg-white px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <option value="price-asc">Price: Low to High</option>
                         <option value="price-desc">Price: High to Low</option>
-                        <option value="eco-desc">Eco Score: High to Low</option>
+                        <option value="eco-desc">Savings Score: High to Low</option>
                         <option value="discount-desc">Discount %</option>
                     </select>
-                    <label class="flex items-center gap-2 rounded-xl border border-emerald-100 bg-white px-4 py-2.5">
-                        <input type="checkbox" id="eco-only" class="h-5 w-5 text-emerald-600">
-                        <span>Eco-Friendly Only</span>
+                    <label class="flex items-center gap-2 rounded-xl border border-indigo-100 bg-white px-4 py-2.5">
+                        <input type="checkbox" id="eco-only" class="h-5 w-5 text-indigo-600">
+                        <span>Best Deals Only (40%+)</span>
                     </label>
                 </div>
             </div>
@@ -235,8 +235,8 @@
         <section id="results" class="mb-12">
             <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
                 <div>
-                    <h2 id="results-heading" class="section-title text-3xl font-bold">Search Results for "Bamboo Toothbrush"</h2>
-                    <p id="results-summary" class="mt-2 text-gray-500">Showing 3 curated results across major Indian shopping platforms.</p>
+                    <h2 id="results-heading" class="section-title text-3xl font-bold">Search Results for "Wireless Headphones"</h2>
+                    <p id="results-summary" class="mt-2 text-gray-500">Showing comparisons across major Indian shopping platforms.</p>
                 </div>
             </div>
 
@@ -248,12 +248,12 @@
             <div class="overflow-x-auto">
                 <table class="w-full min-w-[760px]">
                     <thead>
-                        <tr class="border-b border-emerald-100 text-left">
+                        <tr class="border-b border-indigo-100 text-left">
                             <th class="py-3">Platform</th>
                             <th class="py-3">Product</th>
                             <th class="py-3 text-right">Price</th>
                             <th class="py-3 text-right">Discount</th>
-                            <th class="py-3 text-center">Eco Score</th>
+                            <th class="py-3 text-center">Value Score</th>
                             <th class="py-3 text-center">Action</th>
                         </tr>
                     </thead>
@@ -265,38 +265,38 @@
         <section id="tips" class="glass-panel rounded-[2rem] p-6">
             <div class="mb-6 flex items-center justify-between gap-4">
                 <div>
-                    <h2 class="section-title text-2xl font-bold">Why Choose Eco-Friendly Products?</h2>
-                    <p class="mt-2 text-gray-500">Small switches compound into lower waste, safer materials, and more sustainable supply chains.</p>
+                    <h2 class="section-title text-2xl font-bold">Smart Shopping Hacks</h2>
+                    <p class="mt-2 text-gray-500">Expert tips to help you maximize savings and uncover hidden deals.</p>
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                 <div class="rounded-3xl bg-white p-5 text-center shadow-sm">
-                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
-                        <i class="fas fa-recycle text-2xl text-emerald-600"></i>
+                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                        <i class="fas fa-clock text-2xl text-indigo-600"></i>
                     </div>
-                    <h3 class="font-semibold">Biodegradable</h3>
-                    <p class="mt-2 text-sm text-gray-600">Reduce landfill pressure with products that naturally break down after use.</p>
+                    <h3 class="font-semibold">Timing is Key</h3>
+                    <p class="mt-2 text-sm text-gray-600">Shop during flash sales and midnight price drops for the best discounts.</p>
                 </div>
                 <div class="rounded-3xl bg-white p-5 text-center shadow-sm">
-                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
-                        <i class="fas fa-tree text-2xl text-emerald-600"></i>
+                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                        <i class="fas fa-layer-group text-2xl text-indigo-600"></i>
                     </div>
-                    <h3 class="font-semibold">Sustainable</h3>
-                    <p class="mt-2 text-sm text-gray-600">Support renewable materials and more responsible manufacturing choices.</p>
+                    <h3 class="font-semibold">Coupon Stacking</h3>
+                    <p class="mt-2 text-sm text-gray-600">Combine bank offers with platform coupons for maximum price reduction.</p>
                 </div>
                 <div class="rounded-3xl bg-white p-5 text-center shadow-sm">
-                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
-                        <i class="fas fa-hand-holding-heart text-2xl text-emerald-600"></i>
+                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                        <i class="fas fa-chart-line text-2xl text-indigo-600"></i>
                     </div>
-                    <h3 class="font-semibold">Non-Toxic</h3>
-                    <p class="mt-2 text-sm text-gray-600">Choose materials that are often gentler on both households and ecosystems.</p>
+                    <h3 class="font-semibold">Price Trends</h3>
+                    <p class="mt-2 text-sm text-gray-600">Monitor price history to ensure you're buying at a genuine low point.</p>
                 </div>
                 <div class="rounded-3xl bg-white p-5 text-center shadow-sm">
-                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
-                        <i class="fas fa-truck text-2xl text-emerald-600"></i>
+                    <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                        <i class="fas fa-bell text-2xl text-indigo-600"></i>
                     </div>
-                    <h3 class="font-semibold">Lower Footprint</h3>
-                    <p class="mt-2 text-sm text-gray-600">Prioritize products that better align with lower-waste transport and sourcing.</p>
+                    <h3 class="font-semibold">Alert System</h3>
+                    <p class="mt-2 text-sm text-gray-600">Set up price drop alerts to catch deals the second they go live.</p>
                 </div>
             </div>
         </section>
@@ -307,18 +307,18 @@
             <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
                 <div>
                     <div class="mb-4 flex items-center gap-2">
-                        <i class="fas fa-leaf text-2xl text-emerald-400"></i>
-                        <span class="text-xl font-bold">EcoFind</span>
+                        <i class="fas fa-tag text-2xl text-indigo-400"></i>
+                        <span class="text-xl font-bold">PriceDrop</span>
                     </div>
-                    <p class="text-sm text-slate-400">Find eco-friendly products and compare offers across Indian e-commerce platforms with cleaner shopping context.</p>
+                    <p class="text-sm text-slate-400">Compare prices across Indian e-commerce stores and get the best value for your money.</p>
                 </div>
                 <div>
                     <h3 class="mb-4 text-lg font-semibold">Quick Links</h3>
                     <ul class="space-y-2 text-slate-400">
                         <li><a href="#results" class="transition hover:text-white">Home</a></li>
                         <li><a href="#filters" class="transition hover:text-white">Categories</a></li>
-                        <li><a href="#tips" class="transition hover:text-white">Eco Tips</a></li>
-                        <li><a href="#" class="transition hover:text-white">About Us</a></li>
+                        <li><a href="#tips" class="transition hover:text-white">Savings Tips</a></li>
+                        <li><a href="#" class="transition hover:text-white">Contact</a></li>
                     </ul>
                 </div>
                 <div>
@@ -332,17 +332,17 @@
                 </div>
                 <div>
                     <h3 class="mb-4 text-lg font-semibold">Subscribe</h3>
-                    <p class="mb-4 text-sm text-slate-400">Get updates on new eco-friendly product categories and deals.</p>
+                    <p class="mb-4 text-sm text-slate-400">Get instant alerts on massive price drops and deal of the day.</p>
                     <div class="flex overflow-hidden rounded-2xl bg-slate-800">
                         <input type="email" placeholder="Your email" class="w-full bg-transparent px-4 py-3 text-white outline-none">
-                        <button class="bg-emerald-600 px-4 py-3 transition hover:bg-emerald-700">
+                        <button class="bg-indigo-600 px-4 py-3 transition hover:bg-indigo-700">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </div>
                 </div>
             </div>
             <div class="mt-8 border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
-                <p>&copy; 2026 EcoFind. All rights reserved.</p>
+                <p>&copy; 2026 PriceDrop India. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -351,15 +351,13 @@
         const API_BASE_URL = (() => {
             const { protocol, hostname, port, origin } = window.location;
 
-            if (protocol === "file:") {
-                return "http://127.0.0.1:5001/api";
+            // If served via http/https, use relative path to /api
+            if (protocol === "http:" || protocol === "https:") {
+                return "/api";
             }
 
-            if (hostname === "127.0.0.1" || hostname === "localhost") {
-                return port === "5001" ? `${origin}/api` : "http://127.0.0.1:5001/api";
-            }
-
-            return `${origin}/api`;
+            // Fallback for file: protocol or other cases
+            return "http://127.0.0.1:5001/api";
         })();
         const PLACEHOLDER_IMAGE = "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=900&q=80";
 
@@ -434,6 +432,8 @@
             }
         }
 
+        let databaseLooksEmpty = false;
+
         async function loadCategories() {
             try {
                 const response = await fetch(`${API_BASE_URL}/categories`);
@@ -442,6 +442,8 @@
                 if (!data.success || !Array.isArray(data.categories)) {
                     return;
                 }
+
+                databaseLooksEmpty = data.categories.length === 0;
 
                 categoryFilter.innerHTML = `
                     <option value="All Categories">All Categories</option>
@@ -478,7 +480,7 @@
 
                 const categoryMatch = category === "All Categories" || product.category === category;
                 const platformMatch = platform === "All Platforms" || price.platform === platform;
-                const ecoMatch = !ecoOnly || product.eco_score >= 85;
+                const ecoMatch = !ecoOnly || (primaryOffer?.discount >= 40);
                 return categoryMatch && platformMatch && ecoMatch;
             });
         }
@@ -514,32 +516,39 @@
             if (!productList.length) {
                 productGrid.innerHTML = `
                     <div class="glass-panel col-span-full rounded-[2rem] p-10 text-center">
-                        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
-                            <i class="fas fa-search text-2xl text-emerald-600"></i>
+                        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                            <i class="fas fa-search text-2xl text-indigo-600"></i>
                         </div>
-                        <h3 class="text-xl font-semibold">No matching products found</h3>
-                        <p class="mt-2 text-gray-500">Try a broader search term or reset the active filters.</p>
+                        <h3 class="text-xl font-semibold">No great deals found</h3>
+                        <p class="mt-2 text-gray-500">
+                            ${databaseLooksEmpty
+                                ? "No product data found. Please run the seed script."
+                                : "Try a broader search term or reset your filters."}
+                        </p>
                     </div>
                 `;
                 return;
             }
 
             productList.forEach((product, index) => {
-                const offer = getPrimaryPrice(product);
-                if (!offer) {
+                const primaryOffer = getPrimaryPrice(product);
+                if (!primaryOffer) {
                     return;
                 }
 
-                const productUrl = safeUrl(offer.product_url);
                 const imageUrl = safeUrl(product.image_url, PLACEHOLDER_IMAGE);
                 const productName = escapeHtml(product.name);
                 const productDescription = escapeHtml(product.description || "No description available yet.");
                 const productCategory = escapeHtml(product.category || "Sustainable pick");
-                const platformName = escapeHtml(offer.platform);
-                const availability = escapeHtml(offer.availability || "In Stock");
-                const originalPrice = offer.discount > 0
-                    ? formatCurrency(Math.round(offer.price / (1 - offer.discount / 100)))
-                    : "";
+                const productMaterials = escapeHtml(product.materials || "High quality");
+                
+                const ecoMetrics = product.eco_metrics || {};
+                const carbonFootprint = ecoMetrics.carbon_footprint ? `&#8377;${ecoMetrics.carbon_footprint}` : "N/A";
+                const waterSavings = ecoMetrics.water_usage ? `${ecoMetrics.water_usage}%` : "Stable";
+
+                const otherOffers = Object.entries(product.prices || {})
+                    .filter(([platform]) => platform !== primaryOffer.platform)
+                    .map(([platform, offer]) => ({ ...offer, platform }));
 
                 const card = document.createElement("article");
                 card.className = "card-hover fade-in overflow-hidden rounded-[2rem] bg-white shadow-sm";
@@ -547,67 +556,111 @@
                 card.innerHTML = `
                     <div class="relative">
                         <img src="${imageUrl}" alt="${productName}" class="h-52 w-full object-cover">
-                        <div class="eco-badge rounded-full bg-emerald-500 px-3 py-1 text-sm font-bold text-white">
-                            Eco Score: ${product.eco_score}%
+                        <div class="eco-badge rounded-full bg-indigo-500 px-3 py-1 text-sm font-bold text-white">
+                            Value: ${product.eco_score}%
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold">${productName}</h3>
-                        <p class="mt-2 text-sm text-gray-600">${productDescription}</p>
-                        <div class="mt-5">
-                            <div class="flex flex-wrap items-center gap-2">
-                                <span class="text-2xl font-bold text-emerald-600">${formatCurrency(offer.price)}</span>
-                                ${originalPrice ? `<span class="text-gray-400 line-through">${originalPrice}</span>` : ""}
-                                <span class="font-medium text-emerald-600">${offer.discount}% off</span>
-                            </div>
-                            <div class="mt-1 text-sm text-gray-500">${productCategory}</div>
+                        <div class="mb-3 flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-600">${productCategory}</span>
+                            <span class="rounded-full bg-indigo-100 px-2 py-0.5 text-[10px] font-bold text-indigo-700">TOP DEAL</span>
                         </div>
-                        <div class="mt-5 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <img src="${platformLogos[offer.platform] || ""}" alt="${platformName}" class="h-5 object-contain">
-                                <span class="text-sm">${platformName}</span>
+                        <h3 class="text-xl font-bold leading-tight">${productName}</h3>
+                        <p class="mt-2 text-sm text-gray-500 line-clamp-2">${productDescription}</p>
+                        
+                        <div class="mt-4 flex flex-wrap gap-2">
+                             <div class="flex items-center gap-1.5 rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-600">
+                                <i class="fas fa-boxes text-[10px]"></i>
+                                <span>${productMaterials}</span>
                             </div>
-                            <span class="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-medium text-emerald-800">${availability}</span>
                         </div>
+
+                        <div class="mt-5 border-t border-slate-50 pt-5">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-2xl font-black text-indigo-600">${formatCurrency(primaryOffer.price)}</span>
+                                        ${primaryOffer.discount > 0 ? `<span class="text-xs font-bold text-indigo-700">(-${primaryOffer.discount}%)</span>` : ""}
+                                    </div>
+                                    <div class="mt-0.5 flex items-center gap-2">
+                                        <img src="${platformLogos[primaryOffer.platform] || ""}" alt="${primaryOffer.platform}" class="h-3.5 object-contain">
+                                        <span class="text-xs font-medium text-gray-400 capitalize">${primaryOffer.platform}</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                     <div class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Previous</div>
+                                     <div class="text-xs font-bold text-slate-700">${carbonFootprint}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        ${otherOffers.length > 0 ? `
+                        <div class="mt-4 space-y-2">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Also available on</p>
+                            <div class="flex flex-wrap gap-3">
+                                ${otherOffers.map(o => `
+                                    <div class="flex items-center gap-1.5 opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition">
+                                        <img src="${platformLogos[o.platform] || ""}" alt="${o.platform}" class="h-3 object-contain">
+                                        <span class="text-[10px] font-bold">${formatCurrency(o.price)}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
+
                         <a
-                            href="${productUrl}"
+                            href="${safeUrl(primaryOffer.product_url)}"
                             target="_blank"
                             rel="noreferrer"
-                            class="mt-5 block w-full rounded-2xl bg-emerald-600 py-3 text-center font-medium text-white transition hover:bg-emerald-700"
+                            class="mt-6 block w-full rounded-2xl bg-slate-900 py-3.5 text-center text-sm font-bold text-white transition hover:bg-black"
                         >
-                            <i class="fas fa-external-link-alt mr-2"></i>Buy Now
+                            <i class="fas fa-shopping-bag mr-2"></i>View Offer
                         </a>
                     </div>
                 `;
                 productGrid.appendChild(card);
 
-                const row = document.createElement("tr");
-                row.className = `${index === 0 ? "bg-emerald-50" : ""} border-b border-emerald-100 hover:bg-slate-50`;
-                row.innerHTML = `
-                    <td class="py-4">
-                        <div class="flex items-center gap-2">
-                            <img src="${platformLogos[offer.platform] || ""}" alt="${platformName}" class="h-5 object-contain">
-                            <span>${platformName}</span>
-                        </div>
-                    </td>
-                    <td class="py-4">${productName}</td>
-                    <td class="py-4 text-right font-semibold text-emerald-600">${formatCurrency(offer.price)}</td>
-                    <td class="py-4 text-right">${offer.discount}% off</td>
-                    <td class="py-4 text-center">
-                        <span class="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-800">${product.eco_score}%</span>
-                    </td>
-                    <td class="py-4 text-center">
-                        <a
-                            href="${productUrl}"
-                            target="_blank"
-                            rel="noreferrer"
-                            class="inline-block rounded-xl bg-emerald-600 px-4 py-2 text-sm text-white transition hover:bg-emerald-700"
-                        >
-                            Buy Now
-                        </a>
-                    </td>
-                `;
-                comparisonTableBody.appendChild(row);
+                // Add ALL offers to comparison table
+                Object.entries(product.prices || {}).forEach(([platform, offer], offerIndex) => {
+                    const row = document.createElement("tr");
+                    const isLowest = offer.price === product.lowest_price;
+                    row.className = `${isLowest ? "bg-indigo-50/50" : ""} border-b border-indigo-100 hover:bg-slate-50 transition-colors`;
+                    row.innerHTML = `
+                        <td class="py-4 pl-4">
+                            <div class="flex items-center gap-3">
+                                <img src="${platformLogos[platform] || ""}" alt="${platform}" class="h-6 w-12 object-contain opacity-80">
+                                <span class="font-semibold text-gray-700">${platform}</span>
+                            </div>
+                        </td>
+                        <td class="py-4">
+                            <div>
+                                <div class="font-bold text-slate-800">${productName}</div>
+                                <div class="text-[10px] font-medium text-slate-400">${productCategory} &bull; ${productMaterials}</div>
+                            </div>
+                        </td>
+                        <td class="py-4 text-right">
+                            <div class="text-lg font-black text-indigo-600">${formatCurrency(offer.price)}</div>
+                            ${offer.discount > 0 ? `<div class="text-[10px] font-bold text-indigo-700">${offer.discount}% OFF</div>` : ""}
+                        </td>
+                        <td class="py-4 text-center">
+                            <div class="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-bold shadow-sm border border-indigo-100">
+                                <i class="fas fa-tag text-indigo-500 text-[10px]"></i>
+                                <span>${product.eco_score}%</span>
+                            </div>
+                        </td>
+                        <td class="py-4 pr-4 text-right">
+                            <a
+                                href="${safeUrl(offer.product_url)}"
+                                target="_blank"
+                                rel="noreferrer"
+                                class="inline-flex items-center gap-2 rounded-xl ${isLowest ? "bg-indigo-600 hover:bg-indigo-700" : "bg-slate-800 hover:bg-slate-900"} px-5 py-2.5 text-xs font-bold text-white transition shadow-sm"
+                            >
+                                Buy Now <i class="fas fa-chevron-right text-[10px]"></i>
+                            </a>
+                        </td>
+                    `;
+                    comparisonTableBody.appendChild(row);
+                });
             });
         }
 
@@ -624,7 +677,7 @@
             }
 
             if (ecoOnlyToggle.checked) {
-                filters.minEcoScore = 85;
+                filters.minDiscount = 40;
             }
 
             try {
